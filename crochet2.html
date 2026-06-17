@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Art Of Crochet</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background-color:#ffe6f2;
+    color:#444;
+}
+
+
+header{
+    background-color:#ff99cc;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+header h1{
+    font-size:40px;
+}
+
+header p{
+    font-size:18px;
+}
+
+.slider{
+    width:80%;
+    margin:20px auto;
+}
+
+.slider img{
+    width:100%;
+    height:400px;
+    object-fit:contain;
+    background:white;
+    border-radius:15px;
+}
+
+
+.intro{
+    width:80%;
+    margin:20px auto;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+}
+
+
+.card-container{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:300px;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card img{
+    width:100%;
+    height:250px;
+    object-fit:contain;
+    background:white;
+}
+
+.card h3{
+    color:#ff4da6;
+    margin:10px;
+}
+
+.card p{
+    padding:10px;
+}
+
+
+.register{
+    width:80%;
+    margin:30px auto;
+    background:white;
+    padding:20px;
+    text-align:center;
+    border-radius:15px;
+}
+
+.register input{
+    padding:10px;
+    width:250px;
+    margin:10px;
+}
+
+button{
+    padding:10px 20px;
+    background:#ff4da6;
+    color:white;
+    border:none;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+button:hover{
+    background:#e60073;
+}
+
+#result{
+    margin-top:15px;
+    color:#ff4da6;
+    font-weight:bold;
+}
+
+footer{
+    background:#ff99cc;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🧶Art of Crochet  </h1>
+    <p id="welcomeText">Handmade Creativity & Art</p>
+</header>
+
+
+<div class="slider">
+    <img id="slide" src="slide1.jpg">
+</div>
+
+
+<section class="intro">
+    <h2>Welcome to Crochet World</h2>
+    <p>Crochet is a handmade craft using yarn and hook.</p>
+</section>
+
+
+<section>
+    <h2 style="text-align:center;">Our Crochet Items</h2>
+
+    <div class="card-container">
+
+        <div class="card">
+            <img src="bag.jpg">
+            <h3>Crochet Bags</h3>
+            <p>Stylish handmade crochet bags.</p>
+        </div>
+
+        <div class="card">
+            <img src="dress.jpg">
+            <h3>Crochet Dresses</h3>
+            <p>Beautiful handmade dresses.</p>
+        </div>
+
+        <div class="card">
+            <img src="toy.jpg">
+            <h3>Crochet Toys</h3>
+            <p>Soft and cute toys for kids.</p>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="register">
+
+    <h2>Workshop Registration</h2>
+
+    <input type="text" id="name" placeholder="Enter your name">
+    <br>
+
+    <button onclick="saveUser()">Generate ID</button>
+
+    <p id="result"></p>
+
+</section>
+
+<footer>
+    <p>© 2026 Crochet World</p>
+</footer>
+
+<script>
+
+
+let images = ["slide1.jpg","slide2.jpg","slide3.jpg"];
+let i = 0;
+
+function changeSlide(){
+    i++;
+    if(i >= images.length){
+        i = 0;
+    }
+    document.getElementById("slide").src = images[i];
+}
+setInterval(changeSlide, 3000);
+
+
+
+function saveUser(){
+
+    let name = document.getElementById("name").value;
+
+    if(name == ""){
+        alert("Enter your name");
+        return;
+    }
+
+    
+    localStorage.setItem("username", name);
+
+    let reg = "REG" + Math.floor(Math.random()*10000);
+
+    document.getElementById("result").innerHTML =
+    "Hello " + name +
+    "<br>Your ID: " + reg +
+    "<br>Saved ✔";
+}
+
+
+window.onload = function(){
+
+    let user = localStorage.getItem("username");
+
+    if(user){
+        document.getElementById("welcomeText").innerHTML =
+        "Welcome back, " + user + " 💖";
+    }
+};
+
+</script>
+
+</body>
+</html>
